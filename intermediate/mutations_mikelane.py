@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List
 
 
@@ -23,7 +24,13 @@ def is_subset_of(strings: List[str]) -> bool:
     >>> is_subset_of(["Alien", "line"])
     True
 
-    because all of the letters in "line" are present in "Alien"."""
+    because all of the letters in "line" are present in "Alien".
+
+    >>> is_subset_of(["hel", "heel"])
+    False
+
+    because of the repeated 'e' in heel
+    """
 
     s1, s2 = list(map(str.casefold, strings))
-    return (set(s2) - set(s1)) == set()
+    return (Counter(s2) - Counter(s1)) == Counter()
